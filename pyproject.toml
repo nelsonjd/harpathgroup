@@ -1,6 +1,6 @@
 [project]
 name = "harpathgroup"
-version = "0.1.0"
+version = "0.1.1"
 description = "landing pages and info about company"
 authors = [
     {name = "Jordan D. Nelson"}

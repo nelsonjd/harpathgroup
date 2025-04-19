@@ -41,4 +41,4 @@ RUN poetry install $(test "$YOUR_ENV" == production && echo "--only=main") --no-
 COPY . /code
 
 # Command to run the application
-CMD ["waitress-serve", "hello:app"]
+CMD ["waitress-serve", "harpathgroup:app"]
