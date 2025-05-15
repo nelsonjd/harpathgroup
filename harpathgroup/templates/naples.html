@@ -1,7 +1,28 @@
 {% extends "layout.html" %}
-{% block title %}
-Naples
+
+{% block title %}Naples{% endblock %}
+
+{% block link %}
+  {{ super() }}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='naples.css') }}" />
 {% endblock %}
+
+{% block header %}
+<nav class="header">
+  <h1 class="logo">The Harpath Group</h1>
+  <div class="menu">
+    <span class="menu-item">
+      <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+    </span>
+    <span class="menu-item">
+      <a href="{{ url_for('naples') }}" class="navbar-item">Locations</a>
+    </span>
+  </span>
+</nav>
+{% endblock %}
+
 {% block content %}
+<div class="body-content">
 This is the Naples page
+</div>
 {% endblock %}

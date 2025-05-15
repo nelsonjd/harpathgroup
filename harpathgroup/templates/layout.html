@@ -1,24 +1,27 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title>{% block title %}{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
-    </head>
 
-    <body>
-        <div class="navbar">
-            <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
-            <a href="{{ url_for('naples') }}" class="navbar-item">Naples</a>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  {% block link %}
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='global.css') }}" />
+  {% endblock %}
+</head>
 
-        <div class="body-content">
-            {% block content %}
-            {% endblock %}
-            <hr/>
-            <footer>
-                <p>&copy; 2018</p>
-            </footer>
-        </div>
-    </body>
+<body>
+  {% block header %}
+  {% endblock %}
+
+  
+  {% block content %}
+  {% endblock %}
+
+  <footer>
+    <p>&copy; 2025</p>
+  </footer>
+</body>
+
 </html>
