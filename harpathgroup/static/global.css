@@ -43,3 +43,35 @@ p {
   font-weight: 300;
 }
 
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 70%;
+}
+
+.section-title {
+  color: var(--primary-color);
+}
+
+.button-secondary {
+  padding: 10px 22px;
+  border: 2px solid var(--primary-color);
+  transition: all 0.5s ease-out;
+}
+
+.button-secondary:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.footer {
+  text-align: center;
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2rem;
+  font-weight: 300;
+}

@@ -14,7 +14,7 @@ Home
     <div class="logo"></div>
     <div class="menu">
       <span class="menu-item">
-        <a href="{{ url_for('naples') }}" class="navbar-item">Locations</a>
+        <a href="{{ url_for('locations') }}" class="navbar-item">Locations</a>
       </span>
     </span>
   </nav>
@@ -24,15 +24,46 @@ Home
 {% block content %}
   <div class="hero">
     <h1 class="hero-title">The Harpath Group</h1>
-    <p class="hero-description">Italian Hotels, Curated</p>
+    <p class="hero-description">Italian hotels, curated</p>
   </div>
   <div class="hero-pic">
     <img alt="Free minibar, in-room safe, desk, laptop workspace" class="uitk-image-media" src="https://images.trvl-media.com/lodging/4000000/3630000/3624000/3623921/31b7a0a3.jpg?impolicy=resizecrop&amp;rw=1200&amp;ra=fit">
   </div>
   <div class="wrapper">
-    <div class="installation">
-      <h3 class="section-title"></h3>
+    <h3 class="section-title">What we do</h3>
+    <p>The Harpath Group curates independent hotels at great prices, to save you time in your search for a wonderful stay in Italy.</p>
+    <div class="feature">
+      <div class="feature-item">
+        <h3 class="section-title">Top-rated</h3>
+        <p>We aggregate reviews from various hotel review sites and conduct our own research in order to list only the best options.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="section-title">We speak Italian</h3>
+        <p>Time spent in the industry speaking with hoteliers allows us to gain insights that can serve you better.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="section-title">Independent-focused</h3>
+        <p>All the hotels on our site are independently owned and many are family-run. There are no chain hotels listed on the Harpath Group.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="section-title">Fully refundable</h3>
+        <p>Links to listings are only shown if they are fully-refundable.  It is one of our core commitments.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="section-title">Goodbye short-term rental industry</h3>
+        <p>A stay at a hotel, in place of a short-term rental, can avoid negative disruptions to local residents' rental market. In many cases a hotel might be the cheaper to boot.</p>
+      </div>
+      <div class="feature-item">
+        <h3 class="section-title">Tips</h3>
+        <p>Our site has tips on Italian culture and what to expect in an Italian hotel.  It might be different than what you expect!</p>
+      </div>
     </div>
   </div>
-  <p>Home page for the Visual Studio Code Flask tutorial.</p>
+  <div class="changelog">
+    <div class="wrapper">
+      <div class="changelog-callout">
+        <a href="#" class="button-secondary">Check out locations</a>
+      </div>
+    </div>
+  </div>
 {% endblock %}

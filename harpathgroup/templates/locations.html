@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 
-{% block title %}Naples{% endblock %}
+{% block title %}Locations{% endblock %}
 
 {% block link %}
   {{ super() }}
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='naples.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='locations.css') }}" />
 {% endblock %}
 
 {% block header %}
@@ -15,7 +15,7 @@
       <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
     </span>
     <span class="menu-item">
-      <a href="{{ url_for('naples') }}" class="navbar-item">Locations</a>
+      <a href="{{ url_for('locations') }}" class="navbar-item">Locations</a>
     </span>
   </span>
 </nav>
@@ -23,6 +23,6 @@
 
 {% block content %}
 <div class="body-content">
-This is the Naples page
+This is the Locations page
 </div>
 {% endblock %}

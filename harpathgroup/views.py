@@ -6,9 +6,8 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/naples")
-@app.route("/naples/<name>")
-def naples():
+@app.route("/locations")
+def locations():
     return render_template(
-        "naples.html",
+        "locations.html",
     )
