@@ -9,20 +9,58 @@
 
 {% block header %}
 <nav class="header">
-  <h1 class="logo">The Harpath Group</h1>
+  <h1 class="logo">The Harpath Group <span class="logo-thin">Locations</span></h1>
   <div class="menu">
     <span class="menu-item">
       <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
-    </span>
-    <span class="menu-item">
-      <a href="{{ url_for('locations') }}" class="navbar-item">Locations</a>
     </span>
   </span>
 </nav>
 {% endblock %}
 
 {% block content %}
-<div class="body-content">
-This is the Locations page
-</div>
+  <div class="wrapper">
+    <aside class="doc-nav">
+      <ul>
+        <li><a href="#abruzzo" class="js-btn selected">Abruzzo</a></li>
+        <li><a href="#basilicata" class="js-btn">Basilicata</a></li>
+        <li><a href="#calabria" class="js-btn">Calabria</a></li>
+        <li><a href="#campania" class="js-btn">Campania</a></li>
+        <li><a href="#emilia-romagna" class="js-btn">Emilia-Romagna</a></li>
+        <li><a href="#friuli-venezia-giulia" class="js-btn">Friuli-Venezia Giulia</a></li>
+        <li><a href="#lazio" class="js-btn">Lazio</a></li>
+        <li><a href="#liguria" class="js-btn">Liguria</a></li>
+        <li><a href="#liguria" class="js-btn">Lombardia</a></li>
+        <li><a href="#marche" class="js-btn">Marche</a></li>
+        <li><a href="#molise" class="js-btn">Molise</a></li>
+        <li><a href="#piemonte" class="js-btn">Piemonte</a></li>
+        <li><a href="#puglia" class="js-btn">Puglia</a></li>
+        <li><a href="#sardegna" class="js-btn">Sardegna</a></li>
+        <li><a href="#sicilia" class="js-btn">Sicilia</a></li>
+        <li><a href="#trentino-alto-adige" class="js-btn">Trentino-Alto Adige</a></li>
+        <li><a href="#toscana" class="js-btn">Toscana</a></li>
+        <li><a href="#umbria" class="js-btn">Umbria</a></li>
+        <li><a href="#veneto" class="js-btn">Veneto</a></li>
+        <li><a href="#valle-d-aosta" class="js-btn">Valle d'Aosta</a></li>
+      </ul>
+    </aside>
+    <article class="doc-content">
+      <section class="js-section">
+        <h3 class="section-title">Abruzzo</h3>
+        <p>This is an article about Abruzzo.</p>
+      </section>
+      <section class="js-section">
+        <h3 class="section-title">Basilicata</h3>
+        <p>This is an article about Abruzzo.</p>
+      </section>
+            <section class="js-section">
+        <h3 class="section-title">Calabria</h3>
+        <p>This is an article about Calabria.</p>
+      </section>
+            <section class="js-section">
+        <h3 class="section-title">Campagnia</h3>
+        <a href="{{ url_for('locations_show', location='naples') }}">Naples</a>
+      </section>
+    </article>
+  </div>
 {% endblock %}

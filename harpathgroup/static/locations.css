@@ -1,7 +1,7 @@
 .header {
   display: grid;
   border-bottom: 1px solid var(--code-bg-color);
-  grid-template-columns: 1fr 212px 60% 1fr;
+  grid-template-columns: 1fr 315px 54% 1fr;
 }
 
 .logo {
@@ -9,4 +9,76 @@
   color: var(--primary-color);
   font-size: 1.4em;
   grid-column: 2;
+}
+
+.logo-thin {
+  font-weight: 300;
+}
+
+.wrapper {
+  display: flex;
+  flex-grow: 1;
+}
+
+.doc-nav {
+  flex-basis: 20%;
+  font-weight: 200;
+}
+
+.doc-nav ul {
+  list-style: none;
+  padding-left: 0;
+  line-height: 1.6;
+}
+
+.doc-nav .selected {
+  color: var(--accent-color);
+  position: relative;
+}
+
+.doc-nav .selected:after {
+  position: absolute;
+  content: "";
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--accent-color);
+  left: -1.5rem;
+  top: 0.3rem;
+}
+
+.doc-content {
+  flex-basis: 80%;
+  padding: 0 0 5rem 2rem;
+}
+
+.hotel-title {
+  color: var(--primary-color);
+}
+
+.booknow-callout {
+  margin: 3rem auto;
+}
+
+@media (max-width: 750px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .doc-nav ul {
+    border-bottom: 1px solid var(--code-bg-color);
+    padding-bottom: 0.5rem;
+  }
+
+  .doc-nav li {
+    display: inline-block;
+    padding-right: 1rem;
+  }
+
+  .doc-nav .selected:after {
+    display: none;
+  }
+
+  .doc-content {
+    padding-left: 0;
+  }
 }

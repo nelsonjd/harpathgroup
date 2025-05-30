@@ -11,3 +11,11 @@ def locations():
     return render_template(
         "locations.html",
     )
+
+@app.route("/locations/")
+@app.route("/locations/<location>")
+def locations_show(location=None):
+    return render_template(
+        "locations_show.html",
+        location=location
+    )

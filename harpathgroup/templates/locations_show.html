@@ -1,0 +1,50 @@
+{% extends "layout.html" %}
+
+{% block title %}Location{% endblock %}
+
+{% block link %}
+  {{ super() }}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='locations.css') }}" />
+{% endblock %}
+
+{% block header %}
+<nav class="header">
+  <h1 class="logo">The Harpath Group <span class="logo-thin">Locations</span></h1>
+  <div class="menu">
+    <span class="menu-item">
+      <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+    </span>
+    <span class="menu-item">
+      <a href="{{ url_for('locations') }}" class="navbar-item">Locations</a>
+    </span>
+  </span>
+</nav>
+{% endblock %}
+
+{% block content %}
+  <div class="wrapper">
+    <aside class="doc-nav">
+      <ul>
+        <li><a href="#about" class="js-btn selected">About</a></li>
+        <li><a href="#hotels" class="js-btn">Hotels</a></li>
+      </ul>
+    </aside>
+    <article class="doc-content">
+      <section class="js-section">
+        <h1 class="section-title">About Naples</h1>
+        <p>This is an article about Naples.</p>
+      </section>
+      <section class="js-section">
+        <h3 class="section-title">Hotels</h3>
+        <p>This is an article about the hotels.</p>
+        <h4 class="hotel-title">1. H22 Hotel</h4>
+        <p>An inviting stay very close to Napoli Centrali the main train station, the goal of hotelier </p>
+        <p>▶︎ Piazza Garibaldi, 101, Naples, Italy <a href="https://maps.app.goo.gl/WtTC58U2pATyEoXr6" target="_blank">View Map</a></p>
+        <p>▶︎ Always fully refundable</p>
+        <div class="booknow-callout">
+          <a href="https://expedia.com/affiliates/naples-hotels-h22-hotel.XEna95o" class="button-secondary">Book Now!</a>
+        </div>
+      </section>
+    </article>
+  </div>
+{% endblock %}
