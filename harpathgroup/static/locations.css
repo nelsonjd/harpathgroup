@@ -59,6 +59,10 @@
   margin: 3rem auto;
 }
 
+.photo-link {
+  text-decoration: none;
+}
+
 @media (max-width: 750px) {
   .wrapper {
     flex-direction: column;

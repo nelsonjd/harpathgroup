@@ -5,6 +5,7 @@
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='locations.css') }}" />
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='photoswipe.css') }}" />
 {% endblock %}
 
 {% block header %}
@@ -44,7 +45,53 @@
         <div class="booknow-callout">
           <a href="https://expedia.com/affiliates/naples-hotels-h22-hotel.XEna95o" class="button-secondary">Book Now!</a>
         </div>
+        <div class="photo-section" id="test-gallery">
+          <a
+            class="photo-link"
+            href="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/7206edc9.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+            data-pswp-width="1200"
+            data-pswp-height="1800"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <img src="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/7206edc9.jpg?impolicy=resizecrop&rw=150&ra=fit" alt="" />
+          </a>
+          <a
+            class="photo-link"
+            href="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/f73cbdfd.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+            data-pswp-width="1200"
+            data-pswp-height="800"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <img src="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/f73cbdfd.jpg?impolicy=resizecrop&rw=150&ra=fit" alt="" />
+          </a>
+          <a
+            class="photo-link"
+            href="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/030663f5.jpg?impolicy=resizecrop&rw=1200&ra=fit"
+            data-pswp-width="1200"
+            data-pswp-height="800"
+            target="_blank"
+            rel="noreferrer"
+            >
+            <img src="https://images.trvl-media.com/lodging/93000000/92690000/92689700/92689637/030663f5.jpg?impolicy=resizecrop&rw=150&ra=fit" alt="" />
+          </a>
+        </div>
       </section>
     </article>
   </div>
+
+  <script type="module">
+    import PhotoSwipeLightbox from '../static/photoswipe-lightbox.esm.js'
+
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#test-gallery',
+
+      children: 'a',
+
+      pswpModule: () => import('../static/photoswipe.esm.js')
+    });
+    
+    lightbox.init();  
+  </script>
 {% endblock %}
