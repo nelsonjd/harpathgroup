@@ -4,7 +4,7 @@
 Home
 {% endblock %}
 
-{% block link %}
+{% block head %}
   {{ super() }}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='home.css') }}" />
 {% endblock %}
