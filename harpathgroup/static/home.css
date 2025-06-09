@@ -58,3 +58,14 @@
   margin: 3rem auto;
   text-align: center;
 }
+
+@media (max-width: 750px) {
+  .feature { 
+    flex-direction: column; 
+  }
+
+  .feature .feature-item {
+    max-width: 100%;
+    margin: 0;
+  }
+}

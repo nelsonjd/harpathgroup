@@ -26,11 +26,61 @@ html, body {
   margin: 0;
   text-align: right;
   overflow: hidden;
+  list-style: none;
 }
 
 .menu-item {
   display: inline-block;
   padding: 1.5rem 1rem;
+}
+
+.menu-item.toggle {
+  display: none;
+}
+
+.toggle {
+  display: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.toggle span,
+.toggle span:before,
+.toggle span:after {
+  content: '';
+  display: block;
+  position: absolute;
+  height: 2px;
+  width: 18px;
+  border-radius: 2px;
+  background: var(--primary-color);
+  transition: all 0.3s ease-in-out;
+  right: 0;
+}
+
+.toggle span:before {
+  top: -6px;
+}
+
+.toggle span:after {
+  bottom: -6px;
+}
+
+.menu.open .toggle span {
+  background-color: transparent;
+}
+
+.menu.open .toggle span:before,
+.menu.open .toggle span:after {
+  top: 0;
+}
+
+.menu.open .toggle span:before {
+  transform: rotate(45deg);
+}
+
+.menu.open .toggle span:after {
+  transform: rotate(-45deg);
 }
 
 .header {
@@ -73,4 +123,32 @@ a {
   color: white;
   padding: 2rem;
   font-weight: 300;
+  font-size: small;
+}
+
+@media (max-width: 600px) {
+  .menu {
+    text-align: right;
+    padding: 0.5rem 1rem;
+  }
+  .menu.open .menu-item {
+    display: inline-block;
+  }
+
+  .menu-item.toggle {
+    display: inline-block
+  }
+
+  .menu-item {
+    display: none;
+  }
+
+  .bye-small {
+    display: none;
+  }
+
+  .menu.open .menu-item:not(.toggle) {
+    display: block;
+    padding: 0 0 0.5rem 0;
+  }
 }

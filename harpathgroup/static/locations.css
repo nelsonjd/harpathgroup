@@ -1,7 +1,7 @@
 .header {
   display: grid;
   border-bottom: 1px solid var(--code-bg-color);
-  grid-template-columns: 1fr 315px 54% 1fr;
+  grid-template-columns: 1fr 315px 45% 1fr;
 }
 
 .logo {
@@ -86,3 +86,10 @@
     padding-left: 0;
   }
 }
+
+@media (max-width: 600px) {
+  .header {
+    grid-template-columns: 1fr 191px 32% 1fr;
+  }
+}
+

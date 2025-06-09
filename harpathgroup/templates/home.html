@@ -12,7 +12,8 @@ Home
 {% block header %}
   <nav class="header">
     <div class="logo"></div>
-    <div class="menu">
+    <div class="menu" :class="{ open: isOpen }" @click="toggleOpen" v-scope>
+      <div class="menu-item toggle"><span></span></div>
       <span class="menu-item">
         <a href="{{ url_for('locations') }}" class="navbar-item">Locations</a>
       </span>
@@ -66,4 +67,16 @@ Home
       </div>
     </div>
   </div>
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js'
+
+    createApp({
+      isOpen: false,
+
+      toggleOpen() {
+        this.isOpen = !this.isOpen
+      }
+    }).mount()
+  </script>
 {% endblock %}

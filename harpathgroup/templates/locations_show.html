@@ -10,8 +10,9 @@
 
 {% block header %}
 <nav class="header">
-  <h1 class="logo">The Harpath Group <span class="logo-thin">Locations</span></h1>
-  <div class="menu">
+  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">Naples</span></h1>
+  <div class="menu" :class="{ open: isOpen }" @click="toggleOpen" v-scope>
+    <div class="menu-item toggle"><span></span></div>
     <span class="menu-item">
       <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
     </span>
@@ -83,6 +84,7 @@
 
   <script type="module">
     import PhotoSwipeLightbox from '../static/photoswipe-lightbox.esm.js'
+    import { createApp } from 'https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js'
 
     const lightbox = new PhotoSwipeLightbox({
       gallery: '#test-gallery',
@@ -92,6 +94,16 @@
       pswpModule: () => import('../static/photoswipe.esm.js')
     });
     
-    lightbox.init();  
+    lightbox.init();
+
+    createApp({
+      isOpen: false,
+
+      toggleOpen() {
+        this.isOpen = !this.isOpen
+      }
+    }).mount()
+
+
   </script>
 {% endblock %}
