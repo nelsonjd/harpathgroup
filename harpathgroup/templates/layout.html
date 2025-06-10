@@ -7,7 +7,10 @@
   <meta name="description" content="a website that curates good italian hotels and has useful and interesting information for site visitors.">
   <title>{% block title %}{% endblock %}</title>
   {% block head %}
-  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800,900" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300..900&display=swap">
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,300..900&display=swap">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='global.css') }}" />
   {% endblock %}
 </head>
