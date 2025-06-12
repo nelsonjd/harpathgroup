@@ -6,6 +6,26 @@
   {{ super() }}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='locations.css') }}" />
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='photoswipe.css') }}" />
+  <script>
+    !function (e) {
+      if (!window.pintrk) {
+        window.pintrk = function () {
+          window.pintrk.queue.push(Array.prototype.slice.call(arguments))
+        }; var
+          n = window.pintrk; n.queue = [], n.version = "3.0"; var
+            t = document.createElement("script"); t.async = !0, t.src = e; var
+              r = document.getElementsByTagName("script")[0];
+        r.parentNode.insertBefore(t, r)
+      }
+    }("https://s.pinimg.com/ct/core.js");
+    pintrk('load', '2614209051804');
+    pintrk('page');
+  </script>
+  <noscript>
+    <img height="1" width="1" style="display:none;" alt=""
+      src="https://ct.pinterest.com/v3/?event=init&tid=2614209051804&noscript=1" />
+  </noscript>
+
 {% endblock %}
 
 {% block header %}
@@ -44,8 +64,8 @@
         </p>
         <p>▶︎ Piazza Garibaldi, 101, Napoli, Italy <a href="https://maps.app.goo.gl/WtTC58U2pATyEoXr6" target="_blank">View Map</a></p>
         <p>▶︎ Always fully refundable</p>
-        <div class="booknow-callout">
-          <a href="https://expedia.com/affiliates/naples-hotels-h22-hotel.XEna95o" class="button-secondary">Book Now!</a>
+        <div class="booknow-callout" v-scope>
+          <a @click="onClick" class="button-secondary">Book Now!</a>
         </div>
         <div class="photo-section" id="test-gallery">
           <a
@@ -102,6 +122,15 @@
 
       toggleOpen() {
         this.isOpen = !this.isOpen
+      },
+
+      onClick() {
+        pintrk('track', 'lead', {
+          event_id: 'eventId0001',
+          lead_type: 'Book Now'
+        })
+
+        window.location.href='https://expedia.com/affiliates/naples-hotels-h22-hotel.XEna95o'
       }
     }).mount()
 
