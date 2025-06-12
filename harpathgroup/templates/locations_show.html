@@ -10,7 +10,7 @@
 
 {% block header %}
 <nav class="header">
-  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">Naples</span></h1>
+  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">Napoli</span></h1>
   <div class="menu" :class="{ open: isOpen }" @click="toggleOpen" v-scope>
     <div class="menu-item toggle"><span></span></div>
     <span class="menu-item">
@@ -33,15 +33,16 @@
     </aside>
     <article class="doc-content">
       <section class="js-section">
-        <h1 class="section-title">About Naples</h1>
-        <p>This is an article about Naples.</p>
+        <h2 id="about" class="section-title">About Napoli</h2>
+        <p>The third largest metropolitan city in Italy, it has been described by the BBC as "the Italian city with too much history to handle."</p>
       </section>
       <section class="js-section">
-        <h3 class="section-title">Hotels</h3>
-        <p>This is an article about the hotels.</p>
-        <h4 class="hotel-title">1. H22 Hotel</h4>
-        <p>An inviting stay very close to Napoli Centrali the main train station, the goal of hotelier </p>
-        <p>▶︎ Piazza Garibaldi, 101, Naples, Italy <a href="https://maps.app.goo.gl/WtTC58U2pATyEoXr6" target="_blank">View Map</a></p>
+        <h2 id="hotels" class="section-title">Hotels</h2>
+        <h3 class="hotel-title" id="h22">1. H22 Hotel</h3>
+        <p>An inviting stay very close to Napoli Centrali, the city's main train station, the H22 Hotel is the product of proprietor Giulia Berardinelli's vision.  She is a third-generation hotelier who has followed in the career footsteps of her father and grandfather.  Each room in the building is decorated in a unique, special way. The name H22 signifies two hours taken out of the day, dedicated solely to oneself.
+          The guests of H22 frequently speak to the sense of care and welcome cultivated by the staff of H22 Hotel.
+        </p>
+        <p>▶︎ Piazza Garibaldi, 101, Napoli, Italy <a href="https://maps.app.goo.gl/WtTC58U2pATyEoXr6" target="_blank">View Map</a></p>
         <p>▶︎ Always fully refundable</p>
         <div class="booknow-callout">
           <a href="https://expedia.com/affiliates/naples-hotels-h22-hotel.XEna95o" class="button-secondary">Book Now!</a>
