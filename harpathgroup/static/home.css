@@ -9,7 +9,11 @@
 }
 
 .menu-item {
-  padding: 1rem;
+  padding: 1
+}
+
+.wrapper {
+  padding-bottom: 2em;
 }
 
 .hero-title {
