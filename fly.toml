@@ -16,6 +16,10 @@ primary_region = 'fra'
   min_machines_running = 0
   processes = ['app']
 
+[mounts]
+  source='sick_jordan_sqlite'
+  destination='/mnt/sick_jordan_sqlite'
+
 [[vm]]
   memory = '1gb'
   cpu_kind = 'shared'

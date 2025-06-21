@@ -2,9 +2,9 @@
 FROM python:3.11-slim-bookworm
 
 # Set environment variables
-ARG YOUR_ENV
+ARG database_name=sqlite.development
 
-ENV YOUR_ENV=${YOUR_ENV} \
+ENV DATABASE=$database_name \
   PYTHONFAULTHANDLER=1 \
   PYTHONUNBUFFERED=1 \
   PYTHONHASHSEED=random \
