@@ -1,5 +1,6 @@
 from flask import Flask, render_template
 from . import app
+from .db_runner import query_db
 
 @app.route("/")
 def home():
@@ -13,8 +14,14 @@ def locations():
     )
 
 @app.route("/locations/")
-@app.route("/locations/<location>")
-def locations_show(location=None):
+@app.route("/locations/<identifier>")
+def locations_show(identifier=None):
+    location = query_db('select * from locations where identifier = ?', [identifier], one=True)
+
+    if location is None: 
+        return 'No such location'
+        
+    
     return render_template(
         "locations_show.html",
         location=location
