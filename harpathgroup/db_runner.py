@@ -10,31 +10,32 @@ if not DATABASE:
 
 print('database location used: ' + DATABASE)
 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    db.row_factory = sqlite3.Row
-    return db
+def get_con():
+    con = getattr(g, '_database', None)
+    if con is None:
+        con = g._database = sqlite3.connect(DATABASE)
+    return con
 
 def query_db(query, args=(), one=False):
-    cur = get_db().execute(query, args)
+    cur = get_con()
+    cur.row_factory = sqlite3.Row
+    cur = cur.execute(query, args)
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
 @app.teardown_appcontext
 def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+    con = getattr(g, '_database', None)
+    if con is not None:
+        con.close()
 
 def init_db():
     with app.app_context():
-        db = get_db()
+        con = get_con()
         with app.open_resource('schema.sql', mode='r') as f:
-            db.cursor().executescript(f.read())
-        db.commit()
+            con.cursor().executescript(f.read())
+        con.commit()
 
 # to run - from project directory, do this.
 # >>> from harpathgroup.db_runner import init_db

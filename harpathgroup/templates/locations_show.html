@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}{{ location['identifier'] }}{% endblock %}
+{% block title %}{{ location.city }}{% endblock %}
 
 {% block head %}
   {{ super() }}
@@ -53,8 +53,8 @@
     </aside>
     <article class="doc-content">
       <section class="js-section">
-        <h2 id="about" class="section-title">About Napoli</h2>
-        <p>The third largest metropolitan city in Italy, it has been described by the BBC as "the Italian city with too much history to handle."</p>
+        <h2 id="about" class="section-title">About {{ location.city }}</h2>
+        <p>{{ location.description }}</p>
       </section>
       <section class="js-section">
         <h2 id="hotels" class="section-title">Hotels</h2>
