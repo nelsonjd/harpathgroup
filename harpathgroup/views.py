@@ -69,6 +69,6 @@ def locations_show(identifier=None):
     
     return render_template(
         "locations_show.html",
-        hotels=hotels,
+        hotels=hotels.values(),
         location=location
     )
