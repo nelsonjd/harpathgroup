@@ -5,5 +5,6 @@ class Hotel:
         self.name = args['name']
         self.description = args['description']
         self.perks = args['perks']
+        self.affiliate_link = args['affiliate_link']
 
     

@@ -53,7 +53,8 @@ def locations_show(identifier=None):
             hotel = Hotel({'id': row['hotel_id'], 
                         'name': row['name'], 
                         'description': row['description'], 
-                        'perks': row['perks']
+                        'perks': row['perks'],
+                        'affiliate_link': row['affiliate_link']
             })
         hotel.hotel_photos.append(
             HotelPhoto({
