@@ -12,8 +12,10 @@ def home():
 
 @app.route("/locations")
 def locations():
+    regions = Location.all_regions()
     return render_template(
         "locations.html",
+        regions=regions
     )
 
 @app.route("/locations/")
