@@ -11,6 +11,7 @@ class Location:
             ('abruzzo', 'Abruzzo'),
             ('basilicata', 'Basilicata'),
             ('calabria', 'Calabria'),
+            ('campania', 'Campania'),
             ('emilia-romagna', 'Emilia-Romagna'),
             ('friuli-venezia-giulia', 'Friuli-Venezia Giulia'),
             ('lazio', 'Lazio'),

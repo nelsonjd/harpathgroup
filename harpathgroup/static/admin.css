@@ -1,0 +1,31 @@
+.header {
+  display: grid;
+  border-bottom: 1px solid var(--code-bg-color);
+  grid-template-columns: 1fr 285px 45% 1fr;
+}
+
+.logo {
+  font-weight: 900;
+  color: var(--primary-color);
+  font-size: 1.4em;
+  grid-column: 2;
+}
+
+.logo-thin {
+  font-weight: 300;
+}
+
+.wrapper {
+  flex-grow: 1;
+}
+
+p {
+  margin: 0;
+}
+
+
+@media (max-width: 600px) {
+  .header {
+    grid-template-columns: 1fr 164px 47% 1fr;
+  }
+}

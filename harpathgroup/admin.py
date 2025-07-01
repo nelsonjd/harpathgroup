@@ -1,0 +1,58 @@
+from flask import render_template, request, redirect, url_for
+from . import app
+from .db_runner import query_db, get_con
+from .models.location import Location
+
+
+@app.get("/admin/locations")
+def admin_index():
+    location_rows = query_db("""
+        SELECT * from locations;
+    """)
+
+    if location_rows is None: 
+        return 'No location has this identifier.'
+    
+    locations = []
+
+    for row in location_rows:
+        location = Location({
+            'id': row['id'],
+            'city': row['city'],
+            'description': row['description'],
+            'identifier': row['identifier']
+        })
+        locations.append(location)
+
+    return render_template("admin_locations.html", locations=locations)
+
+
+@app.route("/admin/locations/new")
+def admin_locations_new():
+    regions = Location.all_regions()
+    
+    return render_template("admin_locations_new.html", regions=regions)
+
+
+
+@app.post("/admin/locations")
+def admin_locations_create():
+    region = request.form['region']
+    city = request.form['city']
+    identifier = request.form['identifier']
+    description = request.form['description']
+
+    if not (region and city and identifier and description):
+        return 'please retry, one of the items was blank.'
+    
+    con = get_con()
+    
+    con.execute("""
+        INSERT into locations (city, description, identifier, region)
+        VALUES (?, ?, ?, ?)
+    """, [city, description, identifier, region])
+
+    con.commit()
+    con.close()
+
+    return redirect(url_for('admin_index'))
