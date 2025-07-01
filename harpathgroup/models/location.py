@@ -4,6 +4,7 @@ class Location:
         self.identifier = args['identifier']
         self.city = args['city']
         self.description = args['description']
+        self.region = args['region']
 
     @staticmethod
     def all_regions():

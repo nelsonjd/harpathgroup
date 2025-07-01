@@ -23,7 +23,7 @@
   <div class="wrapper">
     <a href="{{ url_for('admin_locations_new') }}">New</a>
   {% for location in locations %}
-    <p><a href="{{ url_for('locations_show', identifier=location.identifier) }}">{{location.city}}</a></p>
+    <p><a href="{{ url_for('admin_locations_edit', id=location.id) }}">{{ location.city }}</a></p>
   {% endfor %}
   </div>
 

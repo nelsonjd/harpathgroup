@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, abort
 from . import app
 from .db_runner import query_db, get_con
 from .models.location import Location
@@ -20,7 +20,8 @@ def admin_index():
             'id': row['id'],
             'city': row['city'],
             'description': row['description'],
-            'identifier': row['identifier']
+            'identifier': row['identifier'],
+            'region': row['region']
         })
         locations.append(location)
 
@@ -33,7 +34,26 @@ def admin_locations_new():
     
     return render_template("admin_locations_new.html", regions=regions)
 
+@app.route('/admin/locations/<id>')
+def admin_locations_edit(id=None):
+    row = query_db("""
+        SELECT * from locations
+        WHERE id = ?;
+    """, [id], True)
 
+    location = Location(
+        {
+            "id": row["id"],
+            "city": row["city"],
+            "description": row["description"],
+            "identifier": row["identifier"],
+            "region": row['region']
+        }
+    )
+
+    regions = Location.all_regions()
+
+    return render_template('admin_locations_edit.html', location=location, regions=regions)
 
 @app.post("/admin/locations")
 def admin_locations_create():
@@ -51,6 +71,41 @@ def admin_locations_create():
         INSERT into locations (city, description, identifier, region)
         VALUES (?, ?, ?, ?)
     """, [city, description, identifier, region])
+
+    con.commit()
+    con.close()
+
+    return redirect(url_for('admin_index'))
+
+@app.post('/admin/locations/<id>')
+def admin_locations_update(id=None):
+    row = query_db("""
+        SELECT * from locations
+        WHERE id = ?;
+    """, [id], True)
+
+
+    if (row is None):
+        return abort(404)
+    
+    region = request.form['region']
+    city = request.form['city']
+    identifier = request.form['identifier']
+    description = request.form['description']
+
+    if not (region and city and identifier and description):
+        return 'please retry, one of the items was blank.'
+    
+    con = get_con()
+    
+    con.execute("""
+        UPDATE locations 
+        SET city = ?, 
+            description = ?, 
+            identifier = ?, 
+            region = ?
+        WHERE id = ?
+    """, [city, description, identifier, region, id])
 
     con.commit()
     con.close()

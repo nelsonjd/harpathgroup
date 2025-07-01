@@ -21,26 +21,26 @@
 
 {% block content %}
   <div class="wrapper">
-    <form method="post" action="/admin/locations">
+    <form method="post" action="/admin/locations/{{location.id}}">
       <div>
         <label for="region">Region</label>
         <select name="region" id="region" autocomplete="off">
           {% for value, region in regions %}
-          <option value="{{ region }}">{{ region }}</option>
+          <option value="{{ region }}" {% if location.region==region %} selected="selected"{% endif %}>{{ region }}</option>
           {% endfor %}
         </select>
       </div>
       <div>     
         <label for="city">City</label>
-        <input id="city" type="text" name="city" autocomplete="off" />
+        <input id="city" type="text" name="city" value="{{location.city}}" autocomplete="off" />
       </div>
       <div>
         <label for="identifier">Identifier</label>
-        <input type="text" autocomplete="off" id="identifier" name="identifier" />
+        <input type="text" id="identifier" name="identifier" value="{{location.identifier}}" autocomplete="off"  />
       </div>
       <div>
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="20" cols="50"></textarea>
+        <textarea id="description" name="description" rows="20" cols="50">{{location.description}}</textarea>
       </div>
       <button type="submit">Submit</buxtton>
     </form>
