@@ -1,8 +1,8 @@
 class HotelPhoto:
     def __init__(self, args={}):
-        self.width_t = args['width_t']
-        self.height_t = args['height_t']
-        self.src_t = args['src_t']
-        self.width = args['width']
-        self.height = args['height']
-        self.src = args['src']
+        self.width_t = args.get('width_t', '')
+        self.height_t = args.get('height_t', '')
+        self.src_t = args.get('src_t', '')
+        self.width = args.get('width', '')
+        self.height = args.get('height', '')
+        self.src = args.get('src', '')

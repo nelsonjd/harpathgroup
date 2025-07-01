@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}New Location{% endblock %}
+{% block title %}New or Edit{% endblock %}
 
 {% block head %}
   {{ super() }}
@@ -21,7 +21,7 @@
 
 {% block content %}
   <div class="wrapper">
-    <form method="post" action="/admin/locations/{{location.id}}">
+    <form method="post" action="{{action_url}}">
       <div>
         <label for="region">Region</label>
         <select name="region" id="region" autocomplete="off">
@@ -32,15 +32,15 @@
       </div>
       <div>     
         <label for="city">City</label>
-        <input id="city" type="text" name="city" value="{{location.city}}" autocomplete="off" />
+        <input id="city" type="text" name="city" value="{{ location.city }}" autocomplete="off" />
       </div>
       <div>
         <label for="identifier">Identifier</label>
-        <input type="text" id="identifier" name="identifier" value="{{location.identifier}}" autocomplete="off"  />
+        <input type="text" id="identifier" name="identifier" value="{{ location.identifier }}" autocomplete="off"  />
       </div>
       <div>
         <label for="description">Description</label>
-        <textarea id="description" name="description" rows="20" cols="50">{{location.description}}</textarea>
+        <textarea id="description" name="description" rows="20" cols="50">{{ location.description }}</textarea>
       </div>
       <button type="submit">Submit</buxtton>
     </form>

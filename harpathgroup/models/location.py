@@ -1,10 +1,10 @@
 class Location:
     def __init__(self, args={}):
-        self.id = args['id']
-        self.identifier = args['identifier']
-        self.city = args['city']
-        self.description = args['description']
-        self.region = args['region']
+        self.id = args.get('id')
+        self.identifier = args.get('identifier', '')
+        self.city = args.get('city', '')
+        self.description = args.get('description', '')
+        self.region = args.get('region', '')
 
     @staticmethod
     def all_regions():

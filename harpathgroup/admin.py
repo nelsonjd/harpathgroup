@@ -31,8 +31,13 @@ def admin_index():
 @app.route("/admin/locations/new")
 def admin_locations_new():
     regions = Location.all_regions()
+
+    action_url = '/admin/locations'
+
+    location = Location()
     
-    return render_template("admin_locations_new.html", regions=regions)
+    return render_template("admin_locations_form.html", regions=regions, action_url=action_url, location=location)
+
 
 @app.route('/admin/locations/<id>')
 def admin_locations_edit(id=None):
@@ -40,6 +45,9 @@ def admin_locations_edit(id=None):
         SELECT * from locations
         WHERE id = ?;
     """, [id], True)
+
+    if row is None:
+        return abort(404)
 
     location = Location(
         {
@@ -53,7 +61,10 @@ def admin_locations_edit(id=None):
 
     regions = Location.all_regions()
 
-    return render_template('admin_locations_edit.html', location=location, regions=regions)
+    action_url = f"/admin/locations/{location.id}"
+
+    return render_template('admin_locations_form.html', location=location, regions=regions, action_url=action_url)
+
 
 @app.post("/admin/locations")
 def admin_locations_create():
@@ -76,6 +87,7 @@ def admin_locations_create():
     con.close()
 
     return redirect(url_for('admin_index'))
+
 
 @app.post('/admin/locations/<id>')
 def admin_locations_update(id=None):
