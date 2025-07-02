@@ -2,6 +2,8 @@ from flask import render_template, request, redirect, url_for, abort
 from . import app
 from .db_runner import query_db, get_con
 from .models.location import Location
+from .models.hotel import Hotel
+from .models.hotel_photo import HotelPhoto
 
 
 @app.get("/admin/locations")
@@ -123,3 +125,43 @@ def admin_locations_update(id=None):
     con.close()
 
     return redirect(url_for('admin_index'))
+
+
+@app.get('/admin/hotels/locations/<id>')
+def admin_hotels_index(id=None):
+    rows = query_db("""
+        SELECT * from hotels
+        INNER JOIN hotel_photos on hotels.id = hotel_photos.hotel_id
+        WHERE location_id = ?
+    """, [id])
+
+    if (rows is None):
+        return abort(404)
+
+    hotels = {}
+
+    for row in rows:
+        hotel_id = row['hotel_id']
+        hotel = hotels.get(hotel_id)
+        if hotel is None:
+            hotel = Hotel({'id': row['hotel_id'], 
+                    'name': row['name'], 
+                    'description': row['description'], 
+                    'perks': row['perks'],
+                    'affiliate_link': row['affiliate_link']
+            })
+        hotel.hotel_photos.append(
+            HotelPhoto(
+                {
+                    "width_t": row["width_t"],
+                    "height_t": row["height_t"],
+                    "src_t": row["src_t"],
+                    "width": row["width"],
+                    "height": row["height"],
+                    "src": row["src"],
+                }
+            )
+        )
+        hotels[hotel_id] = hotel
+
+    return render_template("admin_hotels.html", hotels=hotels.values())

@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block title %}Admin Locations{% endblock %}
+{% block title %}Admin Hotels{% endblock %}
 
 {% block head %}
   {{ super() }}
@@ -21,9 +21,8 @@
 
 {% block content %}
   <div class="wrapper">
-    <a href="{{ url_for('admin_locations_new') }}">New</a>
-    {% for location in locations %}
-    <p><a href="{{ url_for('admin_locations_edit', id=location.id) }}">{{ location.city }}</a></p>
+    {% for hotel in hotels %}
+    <p><a href="#">{{ hotel.name }}</a>&nbsp;&nbsp;<span>Affiliate link: {{ hotel.affiliate_link }}</span></p>
     {% endfor %}
   </div>
 
