@@ -23,6 +23,10 @@ p {
   margin: 0;
 }
 
+.hotel-photo {
+  margin-bottom: 2em;
+}
+
 
 @media (max-width: 600px) {
   .header {

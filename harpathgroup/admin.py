@@ -148,7 +148,8 @@ def admin_hotels_index(id=None):
                     'name': row['name'], 
                     'description': row['description'], 
                     'perks': row['perks'],
-                    'affiliate_link': row['affiliate_link']
+                    'affiliate_link': row['affiliate_link'],
+                    'location_id': row['location_id']
             })
         hotel.hotel_photos.append(
             HotelPhoto(
@@ -164,4 +165,20 @@ def admin_hotels_index(id=None):
         )
         hotels[hotel_id] = hotel
 
-    return render_template("admin_hotels.html", hotels=hotels.values())
+    hotels = hotels.values()
+
+    location_id = int(id)
+
+    return render_template("admin_hotels.html", hotels=hotels, location_id=location_id)
+
+
+@app.route("/admin/hotels/new")
+def admin_hotels_new():
+    action = 'new'
+
+    location_id = int(request.args.get('location_id'))
+
+    hotel = Hotel({ 'location_id': location_id })
+    
+    return render_template("admin_hotels_form.html", action=action, hotel=hotel)
+

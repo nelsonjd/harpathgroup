@@ -1,0 +1,113 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ 'New' if action == 'new' else 'Edit' }}{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}" />
+{% endblock %}
+
+{% block header %}
+<nav class="header">
+  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">Admin</span></h1>
+  <div class="menu" :class="{ open: isOpen }" @click="toggleOpen" v-scope>
+    <div class="menu-item toggle"><span></span></div>
+    <span class="menu-item">
+      <a href="{{ url_for('home') }}" class="navbar-brand">Home</a>
+    </span>
+  </span>
+</nav>
+{% endblock %}
+
+{% block content %}
+  <div class="wrapper">
+    {% if action == 'new' %}
+    <form method="post" action="/admin/hotels">
+    {% else %}
+    <form method="post" action="/admin/hotels/{{hotel.id}}">
+    {% endif %}
+      <input type="hidden" name="location_id" value="{{ hotel.location_id }}" />
+      <div>
+        <label for="name-input">Name</label>
+        <input id="name-input" name="name" type="text" value="{{ hotel.name }}" />
+      </div>
+      <div>
+        <label for="description-input">Description</label>
+        <textarea id="description-input" name="description" rows="20" cols="50">{{ hotel.description }}</textarea>
+      </div>
+      <div>
+        <label for="perks-input">Perks</label>
+        <input id="perks-input" name="perks" type="text" value="{{ hotel.perks }}" />
+      </div>
+      <div>
+        <label for="affiliate-link-input">Afflilate Link</label>
+        <input id="affiliate-link-input" name="affiliate_link" type="text" value="{{ hotel.affiliate_link }}" />
+      </div>
+      <div class="photos-section" v-scope>
+        <h2>Hotel Photos</h2>
+        <button type="button" class="add-photos" @click="addPhoto">Add Hotel Photo</button>
+        <div class="hotel-photo" v-for="(photo, index) in hotelPhotos" >
+          <div v-if="photo.src_t">
+            <img :width="photo.width_t" :height="photo.height_t" :src="photo.src_t" alt="" />
+          </div>
+          <div>
+            <label :for="'src-t-input-' + index">Src thumbnail</label>
+            <input :id="'src-t-input-' + index" :name="'src_t_' + index" type="text" v-model="photo.src_t" />
+          </div>
+          <div>
+            <label :for="'width-t-input-' + index">Width thumbnail</label>
+            <input :id="'width-t-input-' + index" :name="'width_t_' + index" type="text" v-model="photo.width_t" />
+          </div>
+          <div>
+            <label :for="'height-t-input-' + index">Height thumbnail</label>
+            <input :id="'height-t-input-' + index" :name="'height_t_' + index" type="text" v-model="photo.height_t" />
+          </div>
+          <div>
+            <label :for="'src-input-' + index">Src</label>
+            <input :id="'src-input-' + index" :name="'src_' + index" type="text" v-model="photo.src" />
+          </div>
+          <div>
+            <label :for="'width-input-' + index">Width</label>
+            <input :id="'width-input-' + index" :name="'width_' + index" type="text" v-model="photo.width" />
+          </div>
+          <div>
+            <label :for="'height-input-' + index">Height</label>
+            <input :id="'height-input-' + index" :name="'height_' + index" type="text" v-model="photo.height" />
+          </div>
+        </div>
+      </div>
+      <button type="submit">Submit</buxtton>
+    </form>
+  </div>
+
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/petite-vue@0.2.2/dist/petite-vue.es.js'
+
+    createApp({
+      isOpen: false,
+      hotelPhotos: [],
+
+      toggleOpen() {
+        this.isOpen = !this.isOpen
+      },
+
+      addPhoto() {
+        this.hotelPhotos.push(
+          {
+            photoIndex: this.hotelPhotos.length,
+            width_t: '',
+            height_t: '',
+            src_t: '',
+            width: '',
+            height: '',
+            src: ''
+          }
+        )
+      },
+
+      getId(index) {
+        return ''
+      }
+    }).mount()
+  </script>
+{% endblock %}

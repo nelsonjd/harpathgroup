@@ -21,7 +21,9 @@
 
 {% block content %}
   <div class="wrapper">
+    {% if location.id %}
     <a href="{{ url_for('admin_hotels_index', id=location.id ) }}">View Hotels</a>
+    {% endif %}
     <form method="post" action="{{action_url}}">
       <div>
         <label for="region">Region</label>
