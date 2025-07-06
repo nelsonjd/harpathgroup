@@ -17,9 +17,9 @@ def get_con():
     return con
 
 def query_db(query, args=(), one=False):
-    cur = get_con()
-    cur.row_factory = sqlite3.Row
-    cur = cur.execute(query, args)
+    con = get_con()
+    con.row_factory = sqlite3.Row
+    cur = con.execute(query, args)
     rv = cur.fetchall()
     cur.close()
     return (rv[0] if rv else None) if one else rv
