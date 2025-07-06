@@ -168,3 +168,41 @@ def admin_hotels_new():
     
     return render_template("admin_hotels_form.html", action=action, hotel=hotel)
 
+
+@app.post("/admin/hotels")
+def admin_hotels_create():
+    name = request.form['name']
+    description = request.form['description']
+    perks = request.form['perks']
+    location_id = request.form['location_id']
+    affiliate_link = request.form['affiliate_link']
+    
+    con = get_con()
+    cur = con.cursor()
+    
+    cur.execute("""
+        INSERT into hotels (name, description, perks, location_id, affiliate_link)
+        VALUES (?, ?, ?, ?, ?)
+    """, [name, description, perks, location_id, affiliate_link])
+
+    con.commit()
+
+    hotel_id = cur.lastrowid
+
+    index = 0
+    keys = ['src_t', 'width_t', 'height_t', 'src', 'width', 'height']
+    while (all(key in request.form for key in transfomed_keys(keys, index))):
+        cur.execute("""
+            INSERT into hotel_photos (src_t, width_t, height_t, src, width, height, hotel_id)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, [request.form[key] for key in transfomed_keys(keys, index)] + [hotel_id])
+
+        con.commit()
+
+        index += 1
+
+    return redirect(url_for('admin_hotels_index', id=location_id))
+
+
+def transfomed_keys(keys, index):
+    return [(key + '_' + str(index)) for key in keys]
