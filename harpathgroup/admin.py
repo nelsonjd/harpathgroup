@@ -131,41 +131,27 @@ def admin_locations_update(id=None):
 def admin_hotels_index(id=None):
     rows = query_db("""
         SELECT * from hotels
-        INNER JOIN hotel_photos on hotels.id = hotel_photos.hotel_id
         WHERE location_id = ?
     """, [id])
 
     if (rows is None):
         return abort(404)
 
-    hotels = {}
+    hotels = []
 
     for row in rows:
-        hotel_id = row['hotel_id']
-        hotel = hotels.get(hotel_id)
-        if hotel is None:
-            hotel = Hotel({'id': row['hotel_id'], 
-                    'name': row['name'], 
-                    'description': row['description'], 
-                    'perks': row['perks'],
-                    'affiliate_link': row['affiliate_link'],
-                    'location_id': row['location_id']
-            })
-        hotel.hotel_photos.append(
-            HotelPhoto(
+        hotels.append(
+            Hotel(
                 {
-                    "width_t": row["width_t"],
-                    "height_t": row["height_t"],
-                    "src_t": row["src_t"],
-                    "width": row["width"],
-                    "height": row["height"],
-                    "src": row["src"],
+                    "id": row["id"],
+                    "name": row["name"],
+                    "description": row["description"],
+                    "perks": row["perks"],
+                    "affiliate_link": row["affiliate_link"],
+                    "location_id": row["location_id"],
                 }
             )
         )
-        hotels[hotel_id] = hotel
-
-    hotels = hotels.values()
 
     location_id = int(id)
 
