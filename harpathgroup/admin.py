@@ -206,3 +206,49 @@ def admin_hotels_create():
 
 def transfomed_keys(keys, index):
     return [(key + '_' + str(index)) for key in keys]
+
+
+@app.route('/admin/hotels/<id>')
+def admin_hotels_edit(id=None):
+    row = query_db("""
+        SELECT * from hotels
+        WHERE id = ?;
+    """, [id], True)
+
+    if row is None:
+        return abort(404)
+
+    hotel = Hotel(
+        {
+            "id": row["id"],
+            "name": row["name"],
+            "description": row["description"],
+            "perks": row["perks"],
+            "affiliate_link": row["affiliate_link"],
+            "location_id": row["location_id"],
+        }
+    )
+
+    rows = query_db("""
+        SELECT * from hotel_photos
+        WHERE hotel_id = ?;
+    """, [id])
+
+    hotel.hotel_photos = []
+
+    for row in rows:
+        hotel.hotel_photos.append(
+            HotelPhoto({
+                "id": row["id"],
+                "width_t": row["width_t"],
+                "height_t": row["height_t"],
+                "src_t": row["src_t"],
+                "width": row["width"],
+                "height": row["height"],
+                "src": row["src"]
+            })
+        )
+
+    action = 'edit'
+
+    return render_template('admin_hotels_form.html', action=action, hotel=hotel)

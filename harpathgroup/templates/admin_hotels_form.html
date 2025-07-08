@@ -43,7 +43,7 @@
         <label for="affiliate-link-input">Afflilate Link</label>
         <input id="affiliate-link-input" name="affiliate_link" type="text" value="{{ hotel.affiliate_link }}" />
       </div>
-      <div class="photos-section" v-scope>
+      <div class="photos-section" v-scope="{ hotelPhotos: {{ hotel.photos_to_JSON() }} }">
         <h2>Hotel Photos</h2>
         <button type="button" class="add-photos" @click="addPhoto">Add Hotel Photo</button>
         <div class="hotel-photo" v-for="(photo, index) in hotelPhotos" >

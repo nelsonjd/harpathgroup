@@ -1,3 +1,5 @@
+import json
+
 class Hotel:
     def __init__(self, args={}):
         self.hotel_photos = []
@@ -8,3 +10,10 @@ class Hotel:
         self.perks = args.get('perks', '')
         self.affiliate_link = args.get('affiliate_link', '')
 
+
+    def photos_to_JSON(self):
+        return json.dumps(
+            self.hotel_photos,
+            default=lambda o: o.__dict__,
+            indent=4
+        )

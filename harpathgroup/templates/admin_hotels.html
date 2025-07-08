@@ -23,7 +23,7 @@
   <div class="wrapper">
     <a href="{{ url_for('admin_hotels_new', location_id=location_id) }}">New</a>
     {% for hotel in hotels %}
-    <p><a href="#">{{ hotel.name }}</a>&nbsp;&nbsp;<span>Affiliate link: {{ hotel.affiliate_link }}</span></p>
+    <p><a href="{{ url_for('admin_hotels_edit', id=hotel.id) }}">{{ hotel.name }}</a>&nbsp;&nbsp;<span>Affiliate link: {{ hotel.affiliate_link }}</span></p>
     {% endfor %}
   </div>
 
