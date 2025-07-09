@@ -4,6 +4,7 @@ from .db_runner import query_db, get_con
 from .models.location import Location
 from .models.hotel import Hotel
 from .models.hotel_photo import HotelPhoto
+from .models.form_helper import FormHelper
 
 
 @app.get("/admin/locations")
@@ -196,7 +197,6 @@ def admin_hotels_create():
             INSERT into hotel_photos (src_t, width_t, height_t, src, width, height, hotel_id)
             VALUES (?, ?, ?, ?, ?, ?, ?)
         """, [request.form[key] for key in transfomed_keys(keys, index)] + [hotel_id])
-
         con.commit()
 
         index += 1
@@ -252,3 +252,65 @@ def admin_hotels_edit(id=None):
     action = 'edit'
 
     return render_template('admin_hotels_form.html', action=action, hotel=hotel)
+
+
+@app.post('/admin/hotels/<id>')
+def admin_hotels_update(id=None):
+    row = query_db("""
+        SELECT * from hotels
+        WHERE id = ?;
+    """, [id], True)
+
+    if (row is None):
+        return abort(404)
+    
+    name = request.form['name']
+    description = request.form['description']
+    perks = request.form['perks']
+    location_id = request.form['location_id']
+    affiliate_link = request.form['affiliate_link']
+
+    con = get_con()
+    cur = con.cursor()
+    
+    cur.execute("""
+        UPDATE hotels 
+        SET name = ?, 
+            description = ?, 
+            perks = ?, 
+            location_id = ?, 
+            affiliate_link = ?
+        WHERE id = ?
+    """, [name, description, perks, location_id, affiliate_link, id])
+
+    con.commit()
+    
+    hotel_id = id
+    
+    index = 0
+    keys = ['src_t', 'width_t', 'height_t', 'src', 'width', 'height']
+    helper = FormHelper()
+    form = request.form
+
+    while (helper.row_exists(form, keys, index)):
+        if (helper.key_exists(form, 'id', index)):
+            cur.execute("""
+                UPDATE hotel_photos
+                SET src_t = ?, 
+                    width_t = ?, 
+                    height_t = ?, 
+                    src = ?,
+                    width = ?, 
+                    height = ?
+                WHERE hotel_id = ?
+            """, helper.values(form, keys, index) + [hotel_id]
+            )
+        else:
+            cur.execute("""
+                INSERT into hotel_photos (src_t, width_t, height_t, src, width, height, hotel_id)
+                VALUES (?, ?, ?, ?, ?, ?, ?)
+            """, helper.values(form, keys, index) + [hotel_id])
+        con.commit()
+        index += 1
+
+    return redirect(url_for('admin_hotels_index', id=location_id))

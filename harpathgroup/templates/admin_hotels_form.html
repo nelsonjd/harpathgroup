@@ -50,6 +50,9 @@
           <div v-if="photo.src_t">
             <img :width="photo.width_t" :height="photo.height_t" :src="photo.src_t" alt="" />
           </div>
+          <div v-if="photo.id">
+            <input type="hidden" v-model="photo.id" :name="'id_' + index" />
+          </div>
           <div>
             <label :for="'src-t-input-' + index">Src thumbnail</label>
             <input :id="'src-t-input-' + index" :name="'src_t_' + index" type="text" v-model="photo.src_t" />
@@ -94,7 +97,6 @@
       addPhoto() {
         this.hotelPhotos.push(
           {
-            photoIndex: this.hotelPhotos.length,
             width_t: '',
             height_t: '',
             src_t: '',
@@ -103,10 +105,6 @@
             src: ''
           }
         )
-      },
-
-      getId(index) {
-        return ''
       }
     }).mount()
   </script>
