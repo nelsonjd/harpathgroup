@@ -9,6 +9,7 @@ class Hotel:
         self.description = args.get('description', '')
         self.perks = args.get('perks', '')
         self.affiliate_link = args.get('affiliate_link', '')
+        self.identifier = args.get('identifier', '')
 
 
     def photos_to_JSON(self):

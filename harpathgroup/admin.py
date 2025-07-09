@@ -150,6 +150,7 @@ def admin_hotels_index(id=None):
                     "perks": row["perks"],
                     "affiliate_link": row["affiliate_link"],
                     "location_id": row["location_id"],
+                    "identifier": row["identifier"]
                 }
             )
         )
@@ -177,14 +178,15 @@ def admin_hotels_create():
     perks = request.form['perks']
     location_id = request.form['location_id']
     affiliate_link = request.form['affiliate_link']
+    identifier = request.form['identifier']
     
     con = get_con()
     cur = con.cursor()
     
     cur.execute("""
-        INSERT into hotels (name, description, perks, location_id, affiliate_link)
-        VALUES (?, ?, ?, ?, ?)
-    """, [name, description, perks, location_id, affiliate_link])
+        INSERT into hotels (name, description, perks, location_id, affiliate_link, identifier)
+        VALUES (?, ?, ?, ?, ?, ?)
+    """, [name, description, perks, location_id, affiliate_link, identifier])
 
     con.commit()
 
@@ -226,6 +228,7 @@ def admin_hotels_edit(id=None):
             "perks": row["perks"],
             "affiliate_link": row["affiliate_link"],
             "location_id": row["location_id"],
+            "identifier": row["identifier"]
         }
     )
 
@@ -269,6 +272,7 @@ def admin_hotels_update(id=None):
     perks = request.form['perks']
     location_id = request.form['location_id']
     affiliate_link = request.form['affiliate_link']
+    identifier = request.form["identifier"]
 
     con = get_con()
     cur = con.cursor()
@@ -279,9 +283,10 @@ def admin_hotels_update(id=None):
             description = ?, 
             perks = ?, 
             location_id = ?, 
-            affiliate_link = ?
+            affiliate_link = ?,
+            identifier = ?
         WHERE id = ?
-    """, [name, description, perks, location_id, affiliate_link, id])
+    """, [name, description, perks, location_id, affiliate_link, identifier, id])
 
     con.commit()
     
