@@ -23,7 +23,7 @@ ENV DATABASE=$database_name \
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
     # deps for installing poetry
-    curl
+    curl sqlite3 libsqlite3-dev
 
 # System deps:
 RUN curl -sSL https://install.python-poetry.org | python3 -
