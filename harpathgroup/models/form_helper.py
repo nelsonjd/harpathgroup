@@ -13,3 +13,7 @@ class FormHelper:
     
     def values(self, form, keys, index) -> list:
         return [form[key] for key in self.transfomed_keys(keys, index)]
+    
+    def value(self, form, key, index):
+        return form[self.transform(key, index)]
+    

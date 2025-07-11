@@ -299,6 +299,8 @@ def admin_hotels_update(id=None):
 
     while (helper.row_exists(form, keys, index)):
         if (helper.key_exists(form, 'id', index)):
+            photo_id = helper.value(form, 'id', index)
+
             cur.execute("""
                 UPDATE hotel_photos
                 SET src_t = ?, 
@@ -307,8 +309,8 @@ def admin_hotels_update(id=None):
                     src = ?,
                     width = ?, 
                     height = ?
-                WHERE hotel_id = ?
-            """, helper.values(form, keys, index) + [hotel_id]
+                WHERE id = ? AND hotel_id = ?
+            """, helper.values(form, keys, index) + [photo_id, hotel_id]
             )
         else:
             cur.execute("""
