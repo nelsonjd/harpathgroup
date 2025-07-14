@@ -4,6 +4,7 @@ from .db_runner import query_db
 from .models.hotel import Hotel
 from .models.hotel_photo import HotelPhoto
 from .models.location import Location
+from .util import flatten
 
 @app.route("/")
 def home():
@@ -12,10 +13,38 @@ def home():
 
 @app.route("/locations")
 def locations():
-    regions = Location.all_regions()
+    rows = query_db("""
+        SELECT * FROM locations
+        ORDER BY region
+    """)
+    location_dict = {}
+
+    for row in rows:
+        region = row["region"]
+        locations = location_dict.get(region)
+        location = Location(
+            {
+                "id": row["id"],
+                "identifier": row["identifier"],
+                "city": row["city"],
+                "description": row["description"],
+                "region": row["region"],
+            }
+        )
+        if locations is None:
+            locations = [
+                location
+            ]
+            location_dict[region] = locations
+        else:
+            locations.append(location)
+
+    locations = flatten(location_dict.values())
+
     return render_template(
         "locations.html",
-        regions=regions
+        location_dict=location_dict,
+        locations=locations
     )
 
 @app.route("/locations/")

@@ -20,6 +20,10 @@
   flex-grow: 1;
 }
 
+p {
+  margin: 0;
+}
+
 .doc-nav {
   flex-basis: 20%;
 }

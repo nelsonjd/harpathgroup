@@ -5,30 +5,44 @@ from .models.location import Location
 from .models.hotel import Hotel
 from .models.hotel_photo import HotelPhoto
 from .models.form_helper import FormHelper
+from .util import flatten
 
 
 @app.get("/admin/locations")
 def admin_index():
-    location_rows = query_db("""
-        SELECT * from locations;
+    rows = query_db("""
+        SELECT * FROM locations
+        ORDER BY region
     """)
+    location_dict = {}
 
-    if location_rows is None: 
-        return 'No location has this identifier.'
-    
-    locations = []
+    for row in rows:
+        region = row["region"]
+        locations = location_dict.get(region)
+        location = Location(
+            {
+                "id": row["id"],
+                "identifier": row["identifier"],
+                "city": row["city"],
+                "description": row["description"],
+                "region": row["region"],
+            }
+        )
+        if locations is None:
+            locations = [
+                location
+            ]
+            location_dict[region] = locations
+        else:
+            locations.append(location)
 
-    for row in location_rows:
-        location = Location({
-            'id': row['id'],
-            'city': row['city'],
-            'description': row['description'],
-            'identifier': row['identifier'],
-            'region': row['region']
-        })
-        locations.append(location)
+    locations = flatten(location_dict.values())
 
-    return render_template("admin_locations.html", locations=locations)
+    return render_template(
+        "admin_locations.html",
+        location_dict=location_dict,
+        locations=locations
+    )
 
 
 @app.route("/admin/locations/new")

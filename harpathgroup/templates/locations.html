@@ -23,32 +23,26 @@
   <div class="wrapper">
     <aside class="doc-nav">
       <ul>
-        {% for anchor, region in regions %}
+        {% for region, locations in location_dict.items() %}
           {% if loop.index0 == 0 %}
-            <li><a href="#{{anchor}}" class="js-btn selected">{{ region }}</a></li>
+            <li><a href="#{{ locations[0].region_identifer() }}" class="js-btn selected">{{ region }}</a></li>
           {% else %}
-            <li><a href="#{{anchor}}" class="js-btn">{{ region }}</a></li>
+            <li><a href="#{{ locations[0].region_identifer() }}" class="js-btn">{{ region }}</a></li>
           {% endif %}
         {% endfor %}
       </ul>
     </aside>
     <article class="doc-content">
+      {% for region, locations in location_dict.items() %}
       <section class="js-section">
-        <h2 class="section-title">Abruzzo</h2>
-        <p>This is an article about Abruzzo.</p>
+        <h2 href="#{{ locations[0].region_identifer() }}" class="section-title">{{ region }}</h2>
+        {% for location in location_dict[region] %}
+          <p>
+            <a href="{{ url_for('locations_show', identifier='napoli') }}">{{ location.city }}</a>
+          </p>
+        {% endfor %}
       </section>
-      <section class="js-section">
-        <h2 class="section-title">Basilicata</h2>
-        <p>This is an article about Abruzzo.</p>
-      </section>
-      <section class="js-section">
-        <h2 class="section-title">Calabria</h2>
-        <p>This is an article about Calabria.</p>
-      </section>
-      <section class="js-section">
-        <h2 class="section-title">Campagnia</h2>
-        <a href="{{ url_for('locations_show', identifier='napoli') }}">Napoli</a>
-      </section>
+      {% endfor %}
     </article>
   </div>
 

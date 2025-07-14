@@ -30,3 +30,7 @@ class Location:
             ('veneto', 'Veneto'),
             ("valle-d-aosta", "Valle d'Aosta"),
         ]
+    
+
+    def region_identifer(self):
+        return str(self.region).lower().replace(" ", "-")
