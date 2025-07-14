@@ -47,16 +47,16 @@ def locations():
         locations=locations
     )
 
-@app.route("/locations/")
-@app.route("/locations/<identifier>")
-def locations_show(identifier=None):
+
+@app.route("/locations/<id>")
+def locations_show(id=None):
     location_row = query_db("""
         SELECT * from locations
-        WHERE identifier = ?
-    """, [identifier], True)
+        WHERE id = ?
+    """, [id], True)
 
     if location_row is None: 
-        return 'No location has this identifier.'
+        return 'No location has this id.'
 
     location = Location({
         'id': location_row['id'],

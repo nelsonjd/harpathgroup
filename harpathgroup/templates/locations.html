@@ -38,7 +38,7 @@
         <h2 href="#{{ locations[0].region_identifer() }}" class="section-title">{{ region }}</h2>
         {% for location in location_dict[region] %}
           <p>
-            <a href="{{ url_for('locations_show', identifier='napoli') }}">{{ location.city }}</a>
+            <a href="{{ url_for('locations_show', id=location.id) }}">{{ location.city }}</a>
           </p>
         {% endfor %}
       </section>
