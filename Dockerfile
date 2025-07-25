@@ -2,6 +2,7 @@
 FROM python:3.11-slim-bookworm
 
 # Set environment variables
+# this provides a default and is hard to reason about. fix me
 ARG database_name=sqlite.development
 
 ENV DATABASE=$database_name \
