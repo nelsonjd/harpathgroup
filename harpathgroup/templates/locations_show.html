@@ -10,7 +10,7 @@
 
 {% block header %}
 <nav class="header">
-  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">Napoli</span></h1>
+  <h1 class="logo"><span class="bye-small">The</span> Harpath <span class="bye-small">Group</span></spanGroup> <span class="logo-thin">{{ location.city }}</span></h1>
   <div class="menu" :class="{ open: isOpen }" @click="toggleOpen" v-scope>
     <div class="menu-item toggle"><span></span></div>
     <span class="menu-item">
