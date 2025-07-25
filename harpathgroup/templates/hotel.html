@@ -1,9 +1,8 @@
-<h3 class="hotel-title" id="{{ hotel.identifier }}">{{ hotel.name }}</h3>
-<p>{{ hotel.description }}</p>
-<p>▶︎ {{ hotel.perks }}</p>
-<div class="booknow-callout">
-  <a href="{{ hotel.affiliate_link }}" class="button-secondary">View Hotel on Expedia</a>
-</div>
+<h3 class="hotel-title" id="{{ hotel.identifier }}">
+  <a href="{{ hotel.affiliate_link }}" class="button-secondary">
+    {{ hotel.name }}
+  </a>
+</h3>
 <div class="photo-section" id="test-gallery">
   {% for photo in hotel.hotel_photos %}
   <a class="photo-link"
@@ -15,3 +14,14 @@
   </a>
   {% endfor %}
 </div>
+<div class="booknow-callout">
+  <a href="{{ hotel.affiliate_link }}" class="button-secondary">View on Expedia</a>
+</div>
+
+<p>{{ hotel.description }}</p>
+<p>▶︎ {{ hotel.perks }}</p>
+<div class="booknow-callout">
+  <a href="{{ hotel.affiliate_link }}" class="button-secondary">View on Expedia</a>
+</div>
+
+
