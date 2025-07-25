@@ -12,10 +12,6 @@
   padding: 1
 }
 
-.wrapper {
-  padding-bottom: 2em;
-}
-
 .hero-title {
   font-weight: 900;
   color: var(--primary-color);
@@ -55,7 +51,6 @@
 
 .changelog {
   background-color: var(--bg-color);
-  padding: 2rem 0;
 }
 
 .changelog-callout {
