@@ -93,10 +93,6 @@ p {
   font-weight: 300;
 }
 
-a {
-  color: var(--primary-color);
-}
-
 .wrapper {
   margin: 0 auto;
   width: 70%;
@@ -107,14 +103,16 @@ a {
 }
 
 .button-secondary {
-  padding: 10px 22px;
-  border: 2px solid var(--primary-color);
   transition: all 0.5s ease-out;
 }
 
 .button-secondary:hover {
-  border-color: var(--accent-color);
   color: var(--accent-color);
+}
+
+.booknow-callout {
+  margin: 1rem auto;
+  font-size: 1.17em;
 }
 
 .footer {
