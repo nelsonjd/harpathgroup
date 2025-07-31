@@ -1,8 +1,15 @@
-<h3 class="hotel-title" id="{{ hotel.identifier }}">
-  <a href="{{ hotel.affiliate_link }}" class="button-secondary">
+<h3 class="hotel-title hotel-info" id="{{ hotel.identifier }}">
     {{ hotel.name }}
-  </a>
 </h3>
+<p class="hotel-info">
+  {{ location.city }}, Italia
+</p>
+<p class="hotel-info">
+  <a href="{{ url_for('locations') }}">Other locations</a>
+</p>
+<div class="booknow-callout">
+  <a href="{{ hotel.affiliate_link }}" class="button-secondary">View on Expedia</a>
+</div>
 <div class="photo-section" id="test-gallery">
   {% for photo in hotel.hotel_photos %}
   <a class="photo-link"
@@ -23,5 +30,8 @@
 <div class="booknow-callout">
   <a href="{{ hotel.affiliate_link }}" class="button-secondary">View on Expedia</a>
 </div>
+<p>
+  <a href="#">Back to top</a>
+</p>
 
 

@@ -57,6 +57,10 @@
   color: var(--primary-color);
 }
 
+.hotel-info {
+  margin: 0;
+}
+
 .photo-link {
   text-decoration: none;
 }
