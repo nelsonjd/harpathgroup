@@ -35,7 +35,7 @@
     <article class="doc-content">
       {% for region, locations in location_dict.items() %}
       <section class="js-section">
-        <h2 href="#{{ locations[0].region_identifer() }}" class="section-title">{{ region }}</h2>
+        <h2 id="{{ locations[0].region_identifer() }}" class="section-title">{{ region }}</h2>
         {% for location in location_dict[region] %}
           <p class="link-para">
             <a href="{{ url_for('locations_show', id=location.id) }}">{{ location.city }}</a>
